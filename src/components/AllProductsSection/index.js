@@ -97,7 +97,10 @@ class AllProductsSection extends Component {
       searchInput,
       activeRatingId,
     } = this.state
-    const apiUrl = `https://apis.ccbp.in/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
+    // const apiUrl = `https://apis.ccbp.in/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
+    const apiUrl = `http://localhost:4000/products`
+
+         
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -107,7 +110,7 @@ class AllProductsSection extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
-      const updatedData = fetchedData.products.map(product => ({
+      const updatedData = fetchedData.map(product => ({
         title: product.title,
         brand: product.brand,
         price: product.price,

@@ -44,8 +44,7 @@ const Header = props => {
           <button
             type="button"
             className="nav-mobile-btn"
-            onClick={onClickLogout}
-          >   
+            onClick={onClickLogout}>   
             <img
               src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
               alt="nav logout"

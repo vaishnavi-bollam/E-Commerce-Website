@@ -26,6 +26,7 @@ class LoginForm extends Component {
     Cookies.set('jwt_token', jwtToken, {
       expires: 30,
     })
+    console.log(jwt_token)
     history.replace('/')
   }
 
@@ -36,19 +37,30 @@ class LoginForm extends Component {
   submitForm = async event => {
     event.preventDefault()
     const {username, password} = this.state
+    console.log(username)
     const userDetails = {username, password}
-    const url = 'https://apis.ccbp.in/login'
+    const url = 'http://localhost:4000/login'
     const options = {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(userDetails),
     }
+    
+    try{
     const response = await fetch(url, options)
     const data = await response.json()
+    console.log("Response Data:", data);
     if (response.ok === true) {
       this.onSubmitSuccess(data.jwt_token)
     } else {
       this.onSubmitFailure(data.error_msg)
     }
+    }catch (error) {
+      this.onSubmitFailure('Something went wrong, please try again!');
+    }
+
   }
 
   renderPasswordField = () => {

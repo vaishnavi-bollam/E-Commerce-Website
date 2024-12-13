@@ -30,7 +30,8 @@ class PrimeDealsSection extends Component {
 
     const jwtToken = Cookies.get('jwt_token')
 
-    const apiUrl = 'https://apis.ccbp.in/prime-deals'
+    // const apiUrl = 'https://apis.ccbp.in/prime-deals'
+    const apiUrl = 'http://localhost:4000/primeProducts/'
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -40,7 +41,8 @@ class PrimeDealsSection extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const fetchedData = await response.json()
-      const updatedData = fetchedData.prime_deals.map(product => ({
+      // console.log(fetchedData)
+      const updatedData = fetchedData.map(product => ({
         title: product.title,
         brand: product.brand,
         price: product.price,
@@ -62,6 +64,7 @@ class PrimeDealsSection extends Component {
 
   renderPrimeDealsListView = () => {
     const {primeDeals} = this.state
+    console.log(primeDeals)
     return (
       <div>
         <h1 className="primedeals-list-heading">Exclusive Prime Deals</h1>

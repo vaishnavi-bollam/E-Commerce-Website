@@ -27,6 +27,7 @@ class ProductItemDetails extends Component {
   }
 
   componentDidMount() {
+
     this.getProductData()
   }
 
@@ -51,7 +52,10 @@ class ProductItemDetails extends Component {
       apiStatus: apiStatusConstants.inProgress,
     })
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = `https://apis.ccbp.in/products/${id}`
+    // const apiUrl = `https://apis.ccbp.in/products/${id}`
+    const apiUrl = `http://localhost:4000/products/${id}`
+    console.log(id)
+
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -62,6 +66,7 @@ class ProductItemDetails extends Component {
     if (response.ok) {
       const fetchedData = await response.json()
       const updatedData = this.getFormattedData(fetchedData)
+
       const updatedSimilarProductsData = fetchedData.similar_products.map(
         eachSimilarProduct => this.getFormattedData(eachSimilarProduct),
       )

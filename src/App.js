@@ -9,6 +9,7 @@ import Cart from './components/Cart'
 import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import CartContext from './context/CartContext'
+import Signup from "./components/SIgnup"
 
 import './App.css'
 
@@ -36,6 +37,7 @@ class App extends Component {
         }}
       >
         <Switch>
+          <Route exact path="/signup" component={Signup}/>
           <Route exact path="/login" component={LoginForm} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/products" component={Products} />
